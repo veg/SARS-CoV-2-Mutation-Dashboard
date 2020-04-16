@@ -4,6 +4,15 @@
 
 @tailwind utilities;
 
+.bg-nav {
+  color: #00a99d!important;
+  min-width: 200px;
+  background-image: url(http://datamonkey.org/assets/img/header-logo.svg);
+  background-repeat: no-repeat;
+  background-size: 150px 100px;
+  background-position: right;
+  background-origin: content-box;
+}
 
 .main-nav {
     @apply flex items-center .justify-between flex-wrap .bg-grey-darkest .p-4 .inset-0;

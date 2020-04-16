@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="./dist/styles.css">
     <link rel="stylesheet" href="./dist/all.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/observablehq/inspector/master/src/style.css">
+    <link rel="stylesheet" href="//raw.githubusercontent.com/observablehq/inspector/master/src/style.css">
+    <link rel="stylesheet" href="//vision.hyphy.org/hyphyvision.css">
+    <link rel="stylesheet" href="//unpkg.com/phylotree@alpha/dist/phylotree.css">
     <title>Dashboard | Tailwind Admin</title>
 </head>
 
@@ -20,11 +22,11 @@
     <!--Screen-->
     <div class="min-h-screen flex flex-col">
         <!--Header Section Starts Here-->
-        <header class="bg-nav">
+        <header class="bg-nav navbar">
             <div class="flex justify-between">
                 <div class="p-1 mx-3 inline-flex">
-                    <h1 class="text-white">Datamonkey - COVID-19</h1>
-                    <i class="fas fa-bars p-3 text-white" onclick="sidebarToggle()"></i>
+                    <i class="fas fa-bars fa-2 p-3 text-white" onclick="sidebarToggle()"></i>
+                    <h2 class="text-white ml-2 p-2">SARS-CoV-2 Natural Selection Analysis</h2>
                 </div>
             </div>
         </header>
@@ -61,21 +63,22 @@
 
                 <ul class="flex border-b tab-list">
                   <li class="-mb-px mr-1">
-                    <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold" onclick="tabToggle()" href="#evolution">Evolution</a>
+                    <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold" onclick="tabToggle()" data-hash="evolution" href="#">Evolution</a>
                   </li>
                   <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" href="#tree">Tree</a>
+                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" data-hash="rendered_tree" href="#">Tree</a>
                   </li>
                   <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" href="#site-variability">Site Variability</a>
+                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" data-hash="site-variability" href="#">Site Variability</a>
                   </li>
                   <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" href="#documentation">Documentation</a>
+                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" data-hash="documentation" href="#">Documentation</a>
                   </li>
                 </ul>
 
                 <div id="evolution" class="tab-view flex flex-col">
                     <!-- /Stats Row Ends Here -->
+
 
                     <!-- Card Sextion Starts Here -->
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
@@ -113,12 +116,28 @@
                            <div class="observablehq-distribution_map"></div>
                         </div>
                     </div>
+
+										<div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+											<div class="observablehq-intro"></div>
+										</div>
+
                   </div>
 
-                  <div id="tree-cell" class="tab-view" style="display:none">
+                  <div id="rendered_tree" class="tab-view" style="display:none">
+
+                    <div class="flex flex-1 md:flex-row lg:flex-row mx-2 mt-2">
+											 <div class="observablehq-width flex flex-col mx-2"></div>
+											 <div class="observablehq-height flex flex-col mx-2"></div>
+											 <div class="observablehq-tip_names flex flex-col mx-2"></div>
+										</div>
+
+                    <div class="flex flex-1 md:flex-row lg:flex-row mx-2 mt-2">
+											 <div class="observablehq-tree_howto"></div>
+										</div>
+
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
                         <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
-                           <div class="observablehq-tree_cell"></div>
+                           <div class="observablehq-rendered_tree"></div>
                         </div>
                     </div>
                   </div>
@@ -135,11 +154,7 @@
                 </div>
 
                 <div id="documentation" class="tab-view" style="display:none">
-                  <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
-                      <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
-                         <div class="observablehq-documentation"></div>
-                      </div>
-                  </div>
+								 <div class="observablehq-documentation"></div>
               </div>
 
 
@@ -165,6 +180,7 @@
   import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
   import define from "https://api.observablehq.com/@stevenweaver/natural-selection-analysis-of-sars-cov-2-covid-19.js?v=3";
   (new Runtime).module(define, name => {
+    if (name === "intro") return Inspector.into(".observablehq-intro")();
     if (name === "viewof use_date") return Inspector.into(".observablehq-viewof-use_date")();
     if (name === "summary_table") return Inspector.into("#observablehq-6abd9222 .observablehq-summary_table")();
     if (name === "viewof render_site") return Inspector.into(".observablehq-viewof-render_site")();
@@ -172,7 +188,11 @@
     if (name === "viewof date_range") return Inspector.into(".observablehq-date_range")();
     if (name === "distribution_map") return Inspector.into(".observablehq-distribution_map")();
     if (name === "temporal_evolution_plot") return Inspector.into(".observablehq-temporal_evolution_plot")();
-    if (name === "tree_cell") return Inspector.into(".observablehq-tree_cell")();
+    if (name === "viewof width") return Inspector.into(".observablehq-width")();
+    if (name === "viewof height") return Inspector.into(".observablehq-height")();
+    if (name === "viewof tip_names") return Inspector.into(".observablehq-tip_names")();
+    if (name === "tree_howto") return Inspector.into(".observablehq-tree_howto")();
+    if (name === "rendered_tree") return Inspector.into(".observablehq-rendered_tree")();
     if (name === "variation_plot") return Inspector.into(".observablehq-variation_plot")();
     if (name === "dnds_plot") return Inspector.into(".observablehq-dnds_plot")();
     if (name === "documentation") return Inspector.into(".observablehq-documentation")();

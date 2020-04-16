@@ -54,7 +54,7 @@ if (document.querySelector('.modal-wrapper'))
 
 function tabToggle(e) {
 
-    let id = this.event.target.hash;
+    let id = this.event.target.dataset.hash;
 
     // update classnames
     document.querySelectorAll('.tab-list').forEach(tabs => {
@@ -69,7 +69,7 @@ function tabToggle(e) {
 
     // get all tabs and display none besides anchor
     document.querySelectorAll('.tab-view').forEach(ctn => {
-        if(id == "#" + ctn.id) {
+        if(id == ctn.id) {
           ctn.style.display = "block";
         } else {
           ctn.style.display = "none";

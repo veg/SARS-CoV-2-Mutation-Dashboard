@@ -14508,6 +14508,16 @@ th {
   transition-duration: 1000ms;
 }
 
+.bg-nav {
+  color: #00a99d!important;
+  min-width: 200px;
+  background-image: url(http://datamonkey.org/assets/img/header-logo.svg);
+  background-repeat: no-repeat;
+  background-size: 150px 100px;
+  background-position: right;
+  background-origin: content-box;
+}
+
 .main-nav {
   display: flex;
   align-items: center;
