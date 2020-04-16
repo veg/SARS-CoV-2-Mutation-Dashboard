@@ -78,3 +78,26 @@ function tabToggle(e) {
 
 }
 
+function panelToggle(e) {
+
+    let id = this.event.target.dataset.panel;
+
+    // update classnames
+    //document.querySelectorAll('.panel').forEach(panels => {
+    //});
+
+    //this.event.target.className = "bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold";
+    //this.event.target.parentElement.className = "-mb-px mr-1";
+
+    // get all tabs and display none besides anchor
+    document.querySelectorAll('.panel').forEach(panel => {
+				console.log(panel);	
+        if(id == panel.id) {
+          panel.style.display = "block";
+        } else {
+          panel.style.display = "none";
+        }
+    });
+
+}
+

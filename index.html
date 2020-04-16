@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="//raw.githubusercontent.com/observablehq/inspector/master/src/style.css">
     <link rel="stylesheet" href="//vision.hyphy.org/hyphyvision.css">
     <link rel="stylesheet" href="//unpkg.com/phylotree@alpha/dist/phylotree.css">
-    <title>Dashboard | Tailwind Admin</title>
+    <title>Dashboard | SARS-CoV-2 Admin</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
 
                 <ul class="list-reset flex flex-col">
                     <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
-                        <a href="index.html"
+                        <a onclick="panelToggle()" data-panel="evolution-panel" href="#"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fas fa-tachometer-alt float-left mx-2"></i>
                             Dashboard
@@ -54,12 +54,23 @@
                     <li class="w-full h-full py-3 px-2 border-b border-light-border">
                       <div class="observablehq-viewof-use_residue"></div>
                     </li>
+
+                    <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
+                        <a onclick="panelToggle()" data-panel="observablehq-6c794e13" href="#"
+                           class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fas fa-tachometer-alt float-left mx-2"></i>
+                              State of Sequence Availability
+                            <span><i class="fas fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+
                 </ul>
 
             </aside>
             <!--/Sidebar-->
             <!--Main-->
-            <main class="bg-white-300 flex-1 p-3 overflow-hidden">
+            <div id="evolution-panel" class="bg-white-300 flex-1 p-3 overflow-hidden panel evolution-panel" >
+								<div class="float-right"><a href="https://observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19">Edit on <img alt="@observablehq" src="https://avatars2.githubusercontent.com/u/30080011?v=4&amp;s=128" class="br-100 mw-none" style="width: 20px; height: 20px; max-width: none; flex-shrink: 0;"></a></div>
 
                 <ul class="flex border-b tab-list">
                   <li class="-mb-px mr-1">
@@ -117,23 +128,23 @@
                         </div>
                     </div>
 
-										<div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-											<div class="observablehq-intro"></div>
-										</div>
+                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+                      <div class="observablehq-intro"></div>
+                    </div>
 
                   </div>
 
                   <div id="rendered_tree" class="tab-view" style="display:none">
 
                     <div class="flex flex-1 md:flex-row lg:flex-row mx-2 mt-2">
-											 <div class="observablehq-width flex flex-col mx-2"></div>
-											 <div class="observablehq-height flex flex-col mx-2"></div>
-											 <div class="observablehq-tip_names flex flex-col mx-2"></div>
-										</div>
+                       <div class="observablehq-width flex flex-col mx-2"></div>
+                       <div class="observablehq-height flex flex-col mx-2"></div>
+                       <div class="observablehq-tip_names flex flex-col mx-2"></div>
+                    </div>
 
                     <div class="flex flex-1 md:flex-row lg:flex-row mx-2 mt-2">
-											 <div class="observablehq-tree_howto"></div>
-										</div>
+                       <div class="observablehq-tree_howto"></div>
+                    </div>
 
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
                         <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
@@ -154,13 +165,55 @@
                 </div>
 
                 <div id="documentation" class="tab-view" style="display:none">
-								 <div class="observablehq-documentation"></div>
+                 <div class="observablehq-documentation"></div>
               </div>
 
+            </div>
 
-
-            </main>
             <!--/Main-->
+            <div id="observablehq-6c794e13" class="bg-white-300 flex-1 p-3 overflow-hidden panel gisaid-panel" style="display:none">
+
+							<div class="float-right"><a href="https://observablehq.com/@stevenweaver/case-vs-sequence-count">Edit on <img alt="@observablehq" src="https://avatars2.githubusercontent.com/u/30080011?v=4&amp;s=128" class="br-100 mw-none" style="width: 20px; height: 20px; max-width: none; flex-shrink: 0;"></a></div>
+
+              <div class="observablehq-intro"></div>
+
+							<div class="grid grid-cols-3 gap-4">
+								<div>
+									<div class="observablehq-subView"></div>
+									<div class="observablehq-subViewDesc"></div>
+								</div>
+								<div>
+	   	            <div class="observablehq-totalSeq"></div>
+  		            <div class="observablehq-totalSeqDesc"></div>
+								</div>
+								<div>
+									<div class="observablehq-subDateCountry"></div>
+									<div class="observablehq-subDateCountryDesc"></div>
+								</div>
+								<div>
+									<div class="observablehq-caseCountvsSeqCount"></div>
+									<div class="observablehq-caseCountvsSeqCountDesc"></div>
+								</div>
+								<div>
+									<div class="observablehq-caseCountvsSeqCountC"></div>
+									<div class="observablehq-caseCountvsSeqCountCDesc"></div>
+								</div>
+								<div>
+									<div class="observablehq-collectDate"></div>
+									<div class="observablehq-collectDateDesc"></div>
+								</div>
+								<div>
+									<div class="observablehq-collectDateSub"></div>
+									<div class="observablehq-collectDateSubDesc"></div>
+								</div>
+								<div>
+									<div class="observablehq-collectDateSubMean"></div>
+									<div class="observablehq-collectDateSubMeanDesc"></div>
+								</div>
+							</div>
+							<div class="observablehq-tableHeader"></div>
+							<div class="observablehq-countryTable"></div>
+            </div>
         </div>
         <!--Footer-->
         <footer class="bg-grey-darkest text-white p-2">
@@ -177,9 +230,13 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>-->
 
 <script type="module">
-  import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+  import {Runtime, Inspector, Library} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
   import define from "https://api.observablehq.com/@stevenweaver/natural-selection-analysis-of-sars-cov-2-covid-19.js?v=3";
-  (new Runtime).module(define, name => {
+	let chartWidth = document.getElementById("evolution-panel").offsetWidth * 0.9;
+	console.log(chartWidth);
+  let runtime = new Runtime(Object.assign(new Library, {width: chartWidth}));
+
+	runtime.module(define, name => {
     if (name === "intro") return Inspector.into(".observablehq-intro")();
     if (name === "viewof use_date") return Inspector.into(".observablehq-viewof-use_date")();
     if (name === "summary_table") return Inspector.into("#observablehq-6abd9222 .observablehq-summary_table")();
@@ -196,6 +253,33 @@
     if (name === "variation_plot") return Inspector.into(".observablehq-variation_plot")();
     if (name === "dnds_plot") return Inspector.into(".observablehq-dnds_plot")();
     if (name === "documentation") return Inspector.into(".observablehq-documentation")();
+  });
+</script>
+
+
+<script type="module">
+  import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+  import define from "https://api.observablehq.com/@stevenweaver/case-vs-sequence-count.js?v=3";
+  (new Runtime).module(define, name => {
+    if (name === "intro") return Inspector.into("#observablehq-6c794e13 .observablehq-intro")();
+    if (name === "subView") return Inspector.into("#observablehq-6c794e13 .observablehq-subView")();
+    if (name === "subViewDesc") return Inspector.into("#observablehq-6c794e13 .observablehq-subViewDesc")();
+    if (name === "totalSeq") return Inspector.into("#observablehq-6c794e13 .observablehq-totalSeq")();
+    if (name === "totalSeqDesc") return Inspector.into("#observablehq-6c794e13 .observablehq-totalSeqDesc")();
+    if (name === "subDateCountry") return Inspector.into("#observablehq-6c794e13 .observablehq-subDateCountry")();
+    if (name === "subDateCountryDesc") return Inspector.into("#observablehq-6c794e13 .observablehq-subDateCountryDesc")();
+    if (name === "caseCountvsSeqCount") return Inspector.into("#observablehq-6c794e13 .observablehq-caseCountvsSeqCount")();
+    if (name === "caseCountvsSeqCountDesc") return Inspector.into("#observablehq-6c794e13 .observablehq-caseCountvsSeqCountDesc")();
+    if (name === "caseCountvsSeqCountC") return Inspector.into("#observablehq-6c794e13 .observablehq-caseCountvsSeqCountC")();
+    if (name === "caseCountvsSeqCountCDesc") return Inspector.into("#observablehq-6c794e13 .observablehq-caseCountvsSeqCountCDesc")();
+    if (name === "collectDate") return Inspector.into("#observablehq-6c794e13 .observablehq-collectDate")();
+    if (name === "collectDateDesc") return Inspector.into("#observablehq-6c794e13 .observablehq-collectDateDesc")();
+    if (name === "collectDateSub") return Inspector.into("#observablehq-6c794e13 .observablehq-collectDateSub")();
+    if (name === "collectDateSubDesc") return Inspector.into("#observablehq-6c794e13 .observablehq-collectDateSubDesc")();
+    if (name === "collectDateSubMean") return Inspector.into("#observablehq-6c794e13 .observablehq-collectDateSubMean")();
+    if (name === "collectDateSubMeanDesc") return Inspector.into("#observablehq-6c794e13 .observablehq-collectDateSubMeanDesc")();
+    if (name === "tableHeader") return Inspector.into("#observablehq-6c794e13 .observablehq-tableHeader")();
+    if (name === "countryTable") return Inspector.into("#observablehq-6c794e13 .observablehq-countryTable")();
   });
 </script>
 
