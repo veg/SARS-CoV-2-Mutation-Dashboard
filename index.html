@@ -7,12 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
     <!-- Css -->
-    <link rel="stylesheet" href="./dist/styles.css">
     <link rel="stylesheet" href="./dist/all.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-    <link rel="stylesheet" href="//raw.githubusercontent.com/observablehq/inspector/master/src/style.css">
+    <link rel="stylesheet" href="./dist/styles.css">
     <link rel="stylesheet" href="//vision.hyphy.org/hyphyvision.css">
     <link rel="stylesheet" href="//unpkg.com/phylotree@alpha/dist/phylotree.css">
+    <link rel="stylesheet" href="//raw.githubusercontent.com/observablehq/inspector/master/src/style.css">
+    <link rel="stylesheet" href="./dist/overrides.css">
     <title>Dashboard | SARS-CoV-2 Admin</title>
 </head>
 
@@ -26,7 +27,7 @@
             <div class="flex justify-between">
                 <div class="p-1 mx-3 inline-flex">
                     <i class="fas fa-bars fa-2 p-3 text-white" onclick="sidebarToggle()"></i>
-                    <h2 class="text-white ml-2 p-2">SARS-CoV-2 Natural Selection Analysis</h2>
+                    <h2 class="text-white ml-2 p-2" style="font-family: futura;">SARS-CoV-2 Natural Selection Analysis</h2>
                 </div>
             </div>
         </header>
@@ -39,8 +40,8 @@
                 <ul class="list-reset flex flex-col">
                     <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
                         <a onclick="panelToggle()" data-panel="evolution-panel" href="#"
-                           class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
-                            <i class="fas fa-tachometer-alt float-left mx-2"></i>
+                           class="font-sans hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fas fa-tachometer-alt float-left m-2"></i>
                             Dashboard
                             <span><i class="fas fa-angle-right float-right"></i></span>
                         </a>
@@ -57,8 +58,8 @@
 
                     <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
                         <a onclick="panelToggle()" data-panel="observablehq-6c794e13" href="#"
-                           class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
-                            <i class="fas fa-tachometer-alt float-left mx-2"></i>
+                           class="font-sans hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fas fa-dna float-left m-2"></i>
                               State of Sequence Availability
                             <span><i class="fas fa-angle-right float-right"></i></span>
                         </a>
@@ -76,7 +77,7 @@
 
                 <ul class="flex border-b tab-list">
                   <li class="-mb-px mr-1">
-                    <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold" onclick="tabToggle()" data-hash="evolution" href="#">Evolution</a>
+                    <a class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold" onclick="tabToggle()" data-hash="evolution" href="#">Evolution</a>
                   </li>
                   <li class="mr-1">
                     <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" data-hash="rendered_tree" href="#">Tree</a>
@@ -98,7 +99,7 @@
 
                         <!-- card -->
 
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
+                        <div class=" overflow-hidden  bg-white mx-2 w-full">
                             <div id="observablehq-6abd9222">
                               <div class="observablehq-summary_table"></div>
                             </div>
@@ -106,26 +107,24 @@
                         <!-- /card -->
 
                     </div>
+
                     <!-- /Cards Section Ends Here -->
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
 
                         <!-- card -->
-
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
-                            <div id="observablehq-6abd9222">
-                              <div class="observablehq-date_range"></div>
-                            </div>
+                        <div class="overflow-hidden bg-white mx-2 w-full">
+													<div class="observablehq-date_range p-3"></div>
                         </div>
                         <!-- /card -->
 
                     </div>
 
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
+                        <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
                            <div class="observablehq-temporal_evolution_plot"></div>
                         </div>
 
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
+                        <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
                            <div class="observablehq-distribution_map"></div>
                         </div>
                     </div>
@@ -149,21 +148,19 @@
                     </div>
 
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
+                        <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
                            <div class="observablehq-rendered_tree"></div>
                         </div>
                     </div>
                   </div>
 
                   <div id="site-variability" class="tab-view" style="display:none">
-                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
-                           <div class="observablehq-variation_plot"></div>
-                        </div>
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
-                           <div class="observablehq-dnds_plot"></div>
-                        </div>
-                    </div>
+											<div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
+												 <div class="observablehq-variation_plot"></div>
+											</div>
+											<div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
+												 <div class="observablehq-dnds_plot"></div>
+											</div>
                 </div>
 
                 <div id="documentation" class="tab-view" style="display:none">

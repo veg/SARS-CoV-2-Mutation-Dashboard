@@ -125,3 +125,8 @@ img {
 	display:inline;
 }
 
+th, td {
+	 font-weight: none; 
+	 text-align: left; 
+	 padding: 0px; 
+}

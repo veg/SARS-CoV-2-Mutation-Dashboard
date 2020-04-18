@@ -1,0 +1,19 @@
+th, td {
+	 font-weight: normal; 
+	 text-align: left; 
+	 padding: 0px; 
+}
+
+th {
+  font-weight:bold;
+}
+
+td {
+  vertical-align: middle;
+}
+
+tbody > tr {
+  border-color: black;
+  border-top-width: thin;
+  background-color: white;
+}

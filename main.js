@@ -96,7 +96,6 @@ function panelToggle(e) {
 
 function togglePanels(id) {
     document.querySelectorAll('.panel').forEach(panel => {
-				console.log(panel);	
         if(id == panel.id) {
           panel.style.display = "block";
         } else {
