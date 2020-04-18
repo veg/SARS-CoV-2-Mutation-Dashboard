@@ -69,7 +69,9 @@
             </aside>
             <!--/Sidebar-->
             <!--Main-->
-            <div id="evolution-panel" class="bg-white-300 flex-1 p-3 overflow-hidden panel evolution-panel" >
+						<div id="loading" class="bg-white-300 flex-1 p-3 overflow-hidden panel loading-panel"></div>
+
+            <div id="evolution-panel" class="bg-white-300 flex-1 p-3 overflow-hidden panel evolution-panel" style="display:none">
 								<div class="float-right"><a href="https://observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19">Edit on <img alt="@observablehq" src="https://avatars2.githubusercontent.com/u/30080011?v=4&amp;s=128" class="br-100 mw-none" style="width: 20px; height: 20px; max-width: none; flex-shrink: 0;"></a></div>
 
                 <ul class="flex border-b tab-list">
@@ -226,20 +228,41 @@
 </div>
 <div id="hidden-cells"></div>
 
-<!--<script src="https://underscorejs.org/underscore-min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>-->
 
 <script type="module">
+
   import {Runtime, Inspector, Library} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-  import define from "https://api.observablehq.com/@stevenweaver/natural-selection-analysis-of-sars-cov-2-covid-19.js?v=3";
+  import define from "https://api.observablehq.com/@stevenweaver/loading.js?v=3";
+
+  let runtime = new Runtime();
+
+	runtime.module(define, name => {
+    if (name === "svg") return Inspector.into(".loading-panel")();
+  });
+
+</script>
+
+
+<script type="module">
+
+	import * as _ from "https://underscorejs.org/modules/index.js";
+  import {Runtime, Inspector, Library} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+  import define from "https://api.observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19.js?v=3";
+
 	let chartWidth = document.getElementById("evolution-panel").offsetWidth * 0.9;
-	console.log(chartWidth);
   let runtime = new Runtime(Object.assign(new Library, {width: chartWidth}));
 
 	runtime.module(define, name => {
     if (name === "intro") return Inspector.into(".observablehq-intro")();
     if (name === "viewof use_date") return Inspector.into(".observablehq-viewof-use_date")();
-    if (name === "summary_table") return Inspector.into("#observablehq-6abd9222 .observablehq-summary_table")();
+		if (name === "summary_table") {
+			let inspect = Inspector.into("#observablehq-6abd9222 .observablehq-summary_table")();
+			inspect.fulfilled = _.wrap(inspect.fulfilled, function (func, value) {
+				togglePanels("evolution-panel");
+  			return func.bind(inspect)(value);
+			});
+			return inspect;	
+		}
     if (name === "viewof render_site") return Inspector.into(".observablehq-viewof-render_site")();
     if (name === "viewof use_residue") return Inspector.into(".observablehq-viewof-use_residue")();
     if (name === "viewof date_range") return Inspector.into(".observablehq-date_range")();

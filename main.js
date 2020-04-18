@@ -90,6 +90,11 @@ function panelToggle(e) {
     //this.event.target.parentElement.className = "-mb-px mr-1";
 
     // get all tabs and display none besides anchor
+		togglePanels(id);
+
+}
+
+function togglePanels(id) {
     document.querySelectorAll('.panel').forEach(panel => {
 				console.log(panel);	
         if(id == panel.id) {
@@ -100,4 +105,3 @@ function panelToggle(e) {
     });
 
 }
-
