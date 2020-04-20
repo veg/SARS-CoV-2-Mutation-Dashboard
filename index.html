@@ -23,11 +23,11 @@
     <!--Screen-->
     <div class="min-h-screen flex flex-col">
         <!--Header Section Starts Here-->
-        <header class="bg-nav navbar">
+        <header class="bg-nav navbar h-16">
             <div class="flex justify-between">
                 <div class="p-1 mx-3 inline-flex">
-                    <i class="fas fa-bars fa-2 p-3 text-white" onclick="sidebarToggle()"></i>
-                    <h2 class="text-white ml-2 p-2" style="font-family: futura;">SARS-CoV-2 Natural Selection Analysis</h2>
+                    <i class="fas fa-bars fa-2 p-2 text-white" onclick="sidebarToggle()"></i>
+                    <h2 class="text-white ml-2 p-1" style="font-family: futura;">SARS-CoV-2 Natural Selection Analysis</h2>
                 </div>
             </div>
         </header>
@@ -35,7 +35,7 @@
 
         <div class="flex flex-1">
             <!--Sidebar-->
-            <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
+            <aside id="sidebar" class="h-screen bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block sticky top-0">
 
                 <ul class="list-reset flex flex-col">
                     <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
@@ -70,14 +70,19 @@
             </aside>
             <!--/Sidebar-->
             <!--Main-->
-						<div id="loading" class="bg-white-300 flex-1 p-3 overflow-hidden panel loading-panel"></div>
+						<div id="loading" class="bg-white-300 flex-1 p-3 overflow-hidden panel loading-panel">
+						<div class="loading-anim"></div>
+						<div class="loading-info"></div>
+						</div>
 
             <div id="evolution-panel" class="bg-white-300 flex-1 p-3 overflow-hidden panel evolution-panel" style="display:none">
+
+
 								<div class="float-right"><a href="https://observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19">Edit on <img alt="@observablehq" src="https://avatars2.githubusercontent.com/u/30080011?v=4&amp;s=128" class="br-100 mw-none" style="width: 20px; height: 20px; max-width: none; flex-shrink: 0;"></a></div>
 
                 <ul class="flex border-b tab-list">
                   <li class="-mb-px mr-1">
-                    <a class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold" onclick="tabToggle()" data-hash="evolution" href="#">Evolution</a>
+                    <a class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold" onclick="tabToggle()" data-hash="evolution" href="#">Main</a>
                   </li>
                   <li class="mr-1">
                     <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" data-hash="rendered_tree" href="#">Tree</a>
@@ -86,12 +91,14 @@
                     <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" data-hash="site-variability" href="#">Site Variability</a>
                   </li>
                   <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" data-hash="documentation" href="#">Documentation</a>
+                    <a id="doc-link" class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" onclick="tabToggle()" data-hash="documentation" href="#">Documentation</a>
                   </li>
                 </ul>
 
                 <div id="evolution" class="tab-view flex flex-col">
+
                     <!-- /Stats Row Ends Here -->
+										<div class="text-right italic pb-1"><a href="#" onclick="document.getElementById('doc-link').click()">See here</a> for an in-depth explanation of this table</div>
 
 
                     <!-- Card Sextion Starts Here -->
@@ -110,13 +117,6 @@
 
                     <!-- /Cards Section Ends Here -->
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-
-                        <!-- card -->
-                        <div class="overflow-hidden bg-white mx-2 w-full">
-													<div class="observablehq-date_range p-3"></div>
-                        </div>
-                        <!-- /card -->
-
                     </div>
 
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
@@ -128,6 +128,8 @@
                            <div class="observablehq-distribution_map"></div>
                         </div>
                     </div>
+
+										<div class="observablehq-date_range flex flex-1 flex-col md:flex-row lg:flex-row mx-2"></div>
 
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
                       <div class="observablehq-intro"></div>
@@ -234,7 +236,8 @@
   let runtime = new Runtime();
 
 	runtime.module(define, name => {
-    if (name === "svg") return Inspector.into(".loading-panel")();
+    if (name === "svg") return Inspector.into(".loading-anim")();
+    if (name === "info") return Inspector.into(".loading-info")();
   });
 
 </script>
