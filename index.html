@@ -245,14 +245,14 @@
 
 <script type="module">
 
-    import * as _ from "https://underscorejs.org/modules/index.js";
+  import * as _ from "https://underscorejs.org/modules/index.js";
   import {Runtime, Inspector, Library} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
   import define from "https://api.observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19.js?v=3";
 
-    let chartWidth = document.getElementById("loading").offsetWidth * 0.9;
+  let chartWidth = document.getElementById("loading").offsetWidth * 0.9;
   let runtime = new Runtime(Object.assign(new Library, {width: chartWidth}));
 
-    runtime.module(define, name => {
+  runtime.module(define, name => {
     if (name === "intro") return Inspector.into(".observablehq-intro")();
     if (name === "viewof use_date") return Inspector.into(".observablehq-viewof-use_date")();
         if (name === "summary_table") {
