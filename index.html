@@ -189,15 +189,15 @@
               <!-- /Cards Section Ends Here -->
               <div
                 class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2"
-              ></div>
-
-              <div
-                class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2"
               >
                 <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
                   <div class="observablehq-temporal_evolution_plot"></div>
                 </div>
+              </div>
 
+              <div
+                class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2"
+              >
                 <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
                   <div class="observablehq-distribution_map"></div>
                 </div>
@@ -330,33 +330,65 @@
     </script>
 
     <script type="module">
+
       import * as _ from "https://underscorejs.org/modules/index.js";
+
       import {
         Runtime,
         Inspector,
         Library
       } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-      import define from "https://api.observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19.js?v=3";
+
+      //import define from "https://api.observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19.js?v=3";
+      import define from "https://api.observablehq.com/@stevenweaver/natural-selection-analysis-of-sars-cov-2-covid-19/4.js?v=3";
 
       let chartWidth = document.getElementById("loading").offsetWidth * 0.9;
-      let runtime = new Runtime(
+
+      const runtime = new Runtime(
         Object.assign(new Library(), { width: chartWidth })
       );
 
-      runtime.module(define, name => {
+      const mainModule = runtime.module(define, name => {
+
         if (name === "intro") return Inspector.into(".observablehq-intro")();
+
         if (name === "viewof use_date")
           return Inspector.into(".observablehq-viewof-use_date")();
+
         if (name === "summary_table") {
+
           let inspect = Inspector.into(
             "#observablehq-6abd9222 .observablehq-summary_table"
           )();
-          inspect.fulfilled = _.wrap(inspect.fulfilled, function(func, value) {
+
+         inspect.fulfilled = _.wrap(inspect.fulfilled, function(func, value) {
+
+            var setSummary = function(d) {
+              d3.select("#observablehq-6abd9222 .observablehq-summary_table").selectAll("tr").on("click", function(d) { 
+                let item = d3.select(this).select(".string").html().split("<")[0];
+                let summaryMap = mainModule._scope.get("summary_map")._value;
+                if(item in summaryMap) {
+                  document.getElementsByClassName("observablehq-viewof-render_site")[0].getElementsByTagName("select")[0].value = summaryMap[item];
+                  mainModule._scope.get("viewof render_site")._value.dispatchEvent(new CustomEvent("input"));
+                } else {
+                  setSummary(d);
+                }
+              } );
+            }
+
+            _.delay(setSummary, 2000);
+
             togglePanels("evolution-panel");
             return func.bind(inspect)(value);
+
           });
+
           return inspect;
+
         }
+
+        if (name === "summary_map")
+          return true;
         if (name === "viewof render_site")
           return Inspector.into(".observablehq-viewof-render_site")();
         if (name === "viewof use_residue")
@@ -383,16 +415,24 @@
           return Inspector.into(".observablehq-dnds_plot")();
         if (name === "documentation")
           return Inspector.into(".observablehq-documentation")();
+
       });
+
+      window.mainModule = mainModule;
+
     </script>
 
     <script type="module">
+
       import {
         Runtime,
         Inspector
       } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+
       import define from "https://api.observablehq.com/@stevenweaver/case-vs-sequence-count.js?v=3";
-      new Runtime().module(define, name => {
+
+      const summaryModule = new Runtime().module(define, name => {
+
         if (name === "intro")
           return Inspector.into("#observablehq-6c794e13 .observablehq-intro")();
         if (name === "subView")
@@ -467,9 +507,14 @@
           return Inspector.into(
             "#observablehq-6c794e13 .observablehq-countryTable"
           )();
+
       });
+
+
     </script>
 
+    <script src="//d3js.org/d3.v5.js"></script>
     <script src="./main.js"></script>
+
   </body>
 </html>

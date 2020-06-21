@@ -130,3 +130,16 @@ th, td {
 	 text-align: left; 
 	 padding: 0px; 
 }
+
+.observablehq-viewof-render_site > div > form > div > select {
+  max-width:100%;
+}
+
+.observablehq-summary_table tr:hover {
+  background-color: #ECF0F1;
+  cursor: pointer;
+}
+
+.vega-embed-wrapper {
+  overflow:visible;
+}

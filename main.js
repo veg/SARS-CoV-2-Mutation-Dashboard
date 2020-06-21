@@ -102,5 +102,13 @@ function togglePanels(id) {
           panel.style.display = "none";
         }
     });
-
 }
+
+d3.select("#observablehq-6abd9222 .observablehq-summary_table").selectAll("tr").on("click", function(d) { 
+  console.log('hi');
+  debugger;
+  document.getElementsByClassName("observablehq-viewof-render_site")[0].getElementsByTagName("select")[0].value = "3C,108,108,5";
+  mainModule._scope.get("viewof render_site")._value.dispatchEvent(new CustomEvent("input"));
+} );
+
+
