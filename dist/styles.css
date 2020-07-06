@@ -14674,6 +14674,10 @@ th, td {
   overflow:visible;
 }
 
+details {
+  display: none;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

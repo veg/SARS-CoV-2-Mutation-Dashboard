@@ -177,7 +177,17 @@
               <!-- Card Sextion Starts Here -->
               <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
                 <!-- card -->
+                <div class=" overflow-hidden  bg-white mx-2 w-full">
+                  <div id="observablehq-6abd9222">
+                    <div class="observablehq-genome_view"></div>
+                  </div>
+                </div>
+                <!-- /card -->
+              </div>
 
+              <!-- Card Sextion Starts Here -->
+              <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+                <!-- card -->
                 <div class=" overflow-hidden  bg-white mx-2 w-full">
                   <div id="observablehq-6abd9222">
                     <div class="observablehq-summary_table"></div>
@@ -354,6 +364,9 @@
 
         if (name === "viewof use_date")
           return Inspector.into(".observablehq-viewof-use_date")();
+
+        if (name === "genome_view")
+          return Inspector.into(".observablehq-genome_view")();
 
         if (name === "summary_table") {
 

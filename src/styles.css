@@ -147,3 +147,7 @@ th, td {
 .vega-embed-wrapper {
   overflow:visible;
 }
+
+details {
+  display: none;
+}
