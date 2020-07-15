@@ -14665,6 +14665,15 @@ th, td {
   max-width:100%;
 }
 
+.observablehq-viewof-filter_by_gene > div > form > div > select {
+  max-width:100%;
+}
+
+.observablehq-viewof-minimum_score > div > form > div > input {
+  max-width:100%;
+  text-align:right;
+}
+
 .observablehq-summary_table tr:hover {
   background-color: #ECF0F1;
   cursor: pointer;

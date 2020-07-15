@@ -74,6 +74,12 @@
                 <div class="observablehq-viewof-use_date"></div>
               </li>
               <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                <div class="observablehq-viewof-minimum_score"></div>
+              </li>
+              <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                <div class="observablehq-viewof-filter_by_gene"></div>
+              </li>
+              <li class="w-full h-full py-3 px-2 border-b border-light-border">
                 <div class="observablehq-viewof-render_site"></div>
               </li>
               <li class="w-full h-full py-3 px-2 border-b border-light-border">
@@ -364,6 +370,12 @@
 
         if (name === "viewof use_date")
           return Inspector.into(".observablehq-viewof-use_date")();
+
+        if (name === "viewof filter_by_gene")
+          return Inspector.into(".observablehq-viewof-filter_by_gene")();
+
+        if (name === "viewof minimum_score")
+          return Inspector.into(".observablehq-viewof-minimum_score")();
 
         if (name === "genome_view")
           return Inspector.into(".observablehq-genome_view")();
