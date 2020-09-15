@@ -195,6 +195,9 @@
               </div>
 
               <!-- Card Sextion Starts Here -->
+              <div class="observablehq-summary_number text-right italic pb-1">
+              </div>
+
               <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
                 <!-- card -->
                 <div class=" overflow-hidden  bg-white mx-2 w-full">
@@ -382,6 +385,10 @@
 
         if (name === "genome_view")
           return Inspector.into(".observablehq-genome_view")();
+
+        if (name === "numEntries") {
+          return Inspector.into(".observablehq-summary_number")();
+        }
 
         if (name === "summary_table") {
 
