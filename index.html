@@ -79,6 +79,9 @@
                 <div class="observablehq-viewof-minimum_score"></div>
               </li>
               <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                <div class="observablehq-viewof-ignoreConserved"></div>
+              </li>
+              <li class="w-full h-full py-3 px-2 border-b border-light-border">
                 <div class="observablehq-viewof-filter_by_gene"></div>
               </li>
               <li class="w-full h-full py-3 px-2 border-b border-light-border">
@@ -100,6 +103,7 @@
               <!--    <span><i class="fas summary-pointer fa-angle-right float-right"></i></span>-->
               <!--  </a>-->
               <!--</li>-->
+
             </ul>
           </aside>
           <!--/Sidebar-->
@@ -373,6 +377,10 @@
 
         if (name === "viewof use_date")
           return Inspector.into(".observablehq-viewof-use_date")();
+
+        if (name === "viewof ignoreConserved") {
+          return Inspector.into(".observablehq-viewof-ignoreConserved")();
+        }
 
         if (name === "viewof filter_by_gene")
           return Inspector.into(".observablehq-viewof-filter_by_gene")();
