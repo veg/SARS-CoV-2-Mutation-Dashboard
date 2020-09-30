@@ -4,12 +4,17 @@
 
 @tailwind utilities;
 
+.navbar {
+  border-bottom : "red!important"
+}
+
 .bg-nav {
   color: #00a99d!important;
   min-width: 200px;
-  background-image: url(http://datamonkey.org/assets/img/header-logo.svg);
+  background-image: url("http://igem.temple.edu/images/igem_logo.png");
+  background-color: black;
   background-repeat: no-repeat;
-  background-size: 150px 100px;
+  background-size: 100px 40px;
   background-position: right;
   background-origin: content-box;
 }
@@ -159,6 +164,10 @@ th, td {
 
 details {
   display: none;
+}
+
+.observablehq-chart {
+  margin-top: 25px;
 }
 
 

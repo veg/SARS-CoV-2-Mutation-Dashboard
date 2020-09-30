@@ -17,3 +17,14 @@ tbody > tr {
   border-top-width: thin;
   background-color: white;
 }
+
+.navbar {
+  border-bottom : 2px solid red
+}
+
+svg g > text {
+
+  font-size:1em;
+  font-weight:100;
+
+}
