@@ -25,7 +25,7 @@
       href="//raw.githubusercontent.com/observablehq/inspector/master/src/style.css"
     />
     <link rel="stylesheet" href="./dist/overrides.css" />
-    <title>Dashboard | SARS-CoV-2 Admin</title>
+    <title>Mutation | SARS-CoV-2</title>
   </head>
 
   <body>
@@ -42,7 +42,7 @@
                 onclick="sidebarToggle()"
               ></i>
               <h2 class="text-white ml-2 p-1" style="font-family: futura;">
-                SARS-CoV-2 Natural Selection Analysis
+                SARS-CoV-2 Phylogeny and Spatiotemporal Spread
               </h2>
             </div>
           </div>
@@ -72,58 +72,24 @@
               </li>
 
               <div class="dashboard-options">
-              <li class="w-full h-full py-3 px-2 border-b border-light-border">
-                <div class="observablehq-viewof-use_date"></div>
-              </li>
-              <li class="w-full h-full py-3 px-2 border-b border-light-border">
-                <div class="observablehq-viewof-minimum_score"></div>
-              </li>
-              <li class="w-full h-full py-3 px-2 border-b border-light-border">
-                <div class="observablehq-viewof-ignoreConserved"></div>
-              </li>
-              <li class="w-full h-full py-3 px-2 border-b border-light-border">
-                <div class="observablehq-viewof-filter_by_gene"></div>
-              </li>
-              <li class="w-full h-full py-3 px-2 border-b border-light-border">
-                <div class="observablehq-viewof-render_site"></div>
-              </li>
-              <li class="w-full h-full py-3 px-2 border-b border-light-border">
-                <div class="observablehq-viewof-use_residue"></div>
-              </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                  <div class="observablehq-viewof-as"></div>
+                </li>
               </div>
-
-              <!--<li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">-->
-              <!--  <a-->
-              <!--    onclick="panelToggle()"-->
-              <!--    data-panel="observablehq-6c794e13"-->
-              <!--    href="#"-->
-              <!--    class="font-sans hover:font-normal text-sm text-nav-item no-underline">-->
-              <!--    <i class="fas fa-dna float-left m-2"></i>-->
-              <!--    State of Sequence Availability-->
-              <!--    <span><i class="fas summary-pointer fa-angle-right float-right"></i></span>-->
-              <!--  </a>-->
-              <!--</li>-->
 
             </ul>
           </aside>
+
           <!--/Sidebar-->
           <!--Main-->
           <div
-            id="loading"
-            class="bg-white-300 flex-1 p-3 overflow-hidden panel loading-panel"
-          >
-            <div class="loading-anim"></div>
-            <div class="loading-info"></div>
-          </div>
-
-          <div
             id="evolution-panel"
             class="bg-white-300 flex-1 p-3 overflow-hidden panel evolution-panel"
-            style="display:none"
           >
+            <div class="observablehq-intro"></div>
             <div class="float-right">
               <a
-                href="https://observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19"
+                href="//observablehq.com/@spond/distribution-of-sars-cov-2-sequences-that-have-a-particular"
                 >Edit on
                 <img
                   alt="@observablehq"
@@ -134,6 +100,7 @@
             </div>
 
             <ul class="flex border-b tab-list">
+
               <li class="-mb-px mr-1">
                 <a
                   class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold"
@@ -143,214 +110,74 @@
                   >Main</a
                 >
               </li>
-              <li class="mr-1">
+
+              <li class="-mb-px mr-1">
                 <a
-                  class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+                  class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold"
                   onclick="tabToggle()"
-                  data-hash="rendered_tree"
+                  data-hash="geospatial"
                   href="#"
-                  >Tree</a
+                  >Geospatial</a
                 >
               </li>
+
               <li class="mr-1">
                 <a
-                  class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+                  class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold"
                   onclick="tabToggle()"
-                  data-hash="site-variability"
+                  data-hash="snp-distribution"
                   href="#"
-                  >Site Variability</a
+                  >Genome SNP distribution</a
                 >
               </li>
+
               <li class="mr-1">
                 <a
-                  id="doc-link"
                   class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
                   onclick="tabToggle()"
-                  data-hash="documentation"
+                  data-hash="temporal"
                   href="#"
-                  >Documentation</a
+                  >Temporal</a
                 >
               </li>
             </ul>
 
             <div id="evolution" class="tab-view flex flex-col">
-              <!-- /Stats Row Ends Here -->
-              <div class="text-right italic pb-1">
-                <a
-                  href="#"
-                  onclick="document.getElementById('doc-link').click()"
-                  >See here</a
-                >
-                for an in-depth explanation of this table
-              </div>
-
-              <!-- Card Sextion Starts Here -->
-              <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-                <!-- card -->
-                <div class=" overflow-hidden  bg-white mx-2 w-full">
-                  <div id="observablehq-6abd9222">
-                    <div class="observablehq-genome_view"></div>
-                  </div>
-                </div>
-                <!-- /card -->
-              </div>
-
-              <!-- Card Sextion Starts Here -->
-              <div class="observablehq-summary_number text-right italic pb-1">
-              </div>
-
-              <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-                <!-- card -->
-                <div class=" overflow-hidden  bg-white mx-2 w-full">
-                  <div id="observablehq-6abd9222">
-                    <div class="observablehq-summary_table"></div>
-                  </div>
-                </div>
-                <!-- /card -->
-              </div>
-
-              <!-- /Cards Section Ends Here -->
-              <div
-                class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2"
-              >
-                <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
-                  <div class="observablehq-temporal_evolution_plot"></div>
-                </div>
-              </div>
-
-              <div
-                class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2"
-              >
-                <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
-                  <div class="observablehq-distribution_map"></div>
-                </div>
-              </div>
-
-              <div
-                class="observablehq-date_range flex flex-1 flex-col md:flex-row lg:flex-row mx-2"
-              ></div>
-
-              <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-                <div class="observablehq-intro"></div>
-              </div>
+              <div class="observablehq-figure1View"></div>
+              <div class="observablehq-chart"></div>
             </div>
 
-            <div id="rendered_tree" class="tab-view" style="display:none">
-              <div class="flex flex-1 md:flex-row lg:flex-row mx-2 mt-2">
-                <div class="observablehq-width flex flex-col mx-2"></div>
-                <div class="observablehq-height flex flex-col mx-2"></div>
-                <div class="observablehq-tip_names flex flex-col mx-2"></div>
-              </div>
-
-              <div class="flex flex-1 md:flex-row lg:flex-row mx-2 mt-2">
-                <div class="observablehq-tree_howto"></div>
-              </div>
-
-              <div
-                class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2"
-              >
-                <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
-                  <div class="observablehq-rendered_tree"></div>
-                </div>
-              </div>
+            <div id="geospatial" class="tab-view flex flex-col" style="display:none">
+              <div class="observablehq-viewof-mapDate"></div>
+              <div class="observablehq-geospatialLegend"></div>
+              <div class="observablehq-viewof-doCumulativeCounts"></div>
+              <div class="observablehq-animatedChart"></div>
+              <div class="observablehq-figure2Desc"></div>
             </div>
 
-            <div id="site-variability" class="tab-view" style="display:none">
-              <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
-                <div class="observablehq-variation_plot"></div>
-              </div>
-              <div class=" overflow-hidden  bg-white mx-2 w-full pt-2">
-                <div class="observablehq-dnds_plot"></div>
-              </div>
+            <div id="snp-distribution" class="tab-view flex flex-col" style="display:none">
+              <div class="observablehq-genomicDist"></div>
+              <div class="observablehq-geospatialLegend"></div>
+              <div class="observablehq-figure3Desc"></div>
             </div>
 
-            <div id="documentation" class="tab-view w-1/2" style="display:none">
-              <div class="observablehq-documentation"></div>
-            </div>
-          </div>
-
-          <!--/Main-->
-          <div
-            id="observablehq-6c794e13"
-            class="bg-white-300 flex-1 p-3 overflow-hidden panel gisaid-panel"
-            style="display:none"
-          >
-            <div class="float-right">
-              <a
-                href="https://observablehq.com/@stevenweaver/case-vs-sequence-count"
-                >Edit on
-                <img
-                  alt="@observablehq"
-                  src="https://avatars2.githubusercontent.com/u/30080011?v=4&amp;s=128"
-                  class="br-100 mw-none"
-                  style="width: 20px; height: 20px; max-width: none; flex-shrink: 0;"
-              /></a>
+            <div id="temporal" class="tab-view flex flex-col" style="display:none">
+              <div class="observablehq-trendLegend"></div>
+              <div class="observablehq-trends"></div>
+              <div class="observablehq-figure4Desc"></div>
             </div>
 
-            <div class="observablehq-intro"></div>
-
-            <div class="grid grid-cols-3 gap-4">
-              <div>
-                <div class="observablehq-subView"></div>
-                <div class="observablehq-subViewDesc"></div>
-              </div>
-              <div>
-                <div class="observablehq-totalSeq"></div>
-                <div class="observablehq-totalSeqDesc"></div>
-              </div>
-              <div>
-                <div class="observablehq-subDateCountry"></div>
-                <div class="observablehq-subDateCountryDesc"></div>
-              </div>
-              <div>
-                <div class="observablehq-caseCountvsSeqCount"></div>
-                <div class="observablehq-caseCountvsSeqCountDesc"></div>
-              </div>
-              <div>
-                <div class="observablehq-caseCountvsSeqCountC"></div>
-                <div class="observablehq-caseCountvsSeqCountCDesc"></div>
-              </div>
-              <div>
-                <div class="observablehq-collectDate"></div>
-                <div class="observablehq-collectDateDesc"></div>
-              </div>
-              <div>
-                <div class="observablehq-collectDateSub"></div>
-                <div class="observablehq-collectDateSubDesc"></div>
-              </div>
-              <div>
-                <div class="observablehq-collectDateSubMean"></div>
-                <div class="observablehq-collectDateSubMeanDesc"></div>
-              </div>
-            </div>
-            <div class="observablehq-tableHeader"></div>
-            <div class="observablehq-countryTable"></div>
-          </div>
         </div>
-        <!--Footer-->
-        <footer class="bg-grey-darkest text-white p-2">
-          <div class="flex flex-1 mx-auto">Datamonkey</div>
-        </footer>
-        <!--/footer-->
       </div>
     </div>
+
+    <!--Footer-->
+    <footer class="bg-grey-darkest text-white p-2">
+      <div class="flex flex-1 mx-auto">Datamonkey</div>
+    </footer>
+    <!--/footer-->
+
     <div id="hidden-cells"></div>
-
-    <script type="module">
-      import {
-        Runtime,
-        Inspector,
-        Library
-      } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-      import define from "https://api.observablehq.com/@stevenweaver/loading.js?v=3";
-
-      let runtime = new Runtime();
-
-      runtime.module(define, name => {
-        if (name === "svg") return Inspector.into(".loading-anim")();
-        if (name === "info") return Inspector.into(".loading-info")();
-      });
-    </script>
 
     <script type="module">
 
@@ -362,10 +189,9 @@
         Library
       } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
 
-      //import define from "https://api.observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19.js?v=3";
-      import define from "https://api.observablehq.com/@stevenweaver/natural-selection-analysis-of-sars-cov-2-covid-19/4.js?v=3";
+      import define from "https://api.observablehq.com/@stevenweaver/tracking-signature-mutations-in-sars-cov-2-relative-to-the-i.js?v=3";
 
-      let chartWidth = document.getElementById("loading").offsetWidth * 0.9;
+      let chartWidth = document.getElementById("evolution").offsetWidth * 0.9;
 
       const runtime = new Runtime(
         Object.assign(new Library(), { width: chartWidth })
@@ -373,183 +199,66 @@
 
       const mainModule = runtime.module(define, name => {
 
-        if (name === "intro") return Inspector.into(".observablehq-intro")();
-
-        if (name === "viewof use_date")
-          return Inspector.into(".observablehq-viewof-use_date")();
-
-        if (name === "viewof ignoreConserved") {
-          return Inspector.into(".observablehq-viewof-ignoreConserved")();
+        if (name === "viewof as") {
+          return Inspector.into(".observablehq-viewof-as")();
         }
 
-        if (name === "viewof filter_by_gene")
-          return Inspector.into(".observablehq-viewof-filter_by_gene")();
-
-        if (name === "viewof minimum_score")
-          return Inspector.into(".observablehq-viewof-minimum_score")();
-
-        if (name === "genome_view")
-          return Inspector.into(".observablehq-genome_view")();
-
-        if (name === "numEntries") {
-          return Inspector.into(".observablehq-summary_number")();
+        if (name === "intro") {
+          return Inspector.into(".observablehq-intro")();
         }
 
-        if (name === "summary_table") {
-
-          let inspect = Inspector.into(
-            "#observablehq-6abd9222 .observablehq-summary_table"
-          )();
-
-         inspect.fulfilled = _.wrap(inspect.fulfilled, function(func, value) {
-
-            var setSummary = function(d) {
-              d3.select("#observablehq-6abd9222 .observablehq-summary_table").selectAll("tr").on("click", function(d) { 
-                let item = d3.select(this).select(".string").html().split("<")[0];
-                let summaryMap = mainModule._scope.get("summary_map")._value;
-                if(item in summaryMap) {
-                  document.getElementsByClassName("observablehq-viewof-render_site")[0].getElementsByTagName("select")[0].value = summaryMap[item];
-                  mainModule._scope.get("viewof render_site")._value.dispatchEvent(new CustomEvent("input"));
-                } else {
-                  setSummary(d);
-                }
-              } );
-            }
-
-            _.delay(setSummary, 2000);
-
-            togglePanels("evolution-panel");
-            return func.bind(inspect)(value);
-
-          });
-
-          return inspect;
-
+        if (name === "figure1View") {
+          return Inspector.into(".observablehq-figure1View")();
         }
 
-        if (name === "summary_map")
-          return true;
-        if (name === "viewof render_site")
-          return Inspector.into(".observablehq-viewof-render_site")();
-        if (name === "viewof use_residue")
-          return Inspector.into(".observablehq-viewof-use_residue")();
-        if (name === "viewof date_range")
-          return Inspector.into(".observablehq-date_range")();
-        if (name === "distribution_map")
-          return Inspector.into(".observablehq-distribution_map")();
-        if (name === "temporal_evolution_plot")
-          return Inspector.into(".observablehq-temporal_evolution_plot")();
-        if (name === "viewof width")
-          return Inspector.into(".observablehq-width")();
-        if (name === "viewof height")
-          return Inspector.into(".observablehq-height")();
-        if (name === "viewof tip_names")
-          return Inspector.into(".observablehq-tip_names")();
-        if (name === "tree_howto")
-          return Inspector.into(".observablehq-tree_howto")();
-        if (name === "rendered_tree")
-          return Inspector.into(".observablehq-rendered_tree")();
-        if (name === "variation_plot")
-          return Inspector.into(".observablehq-variation_plot")();
-        if (name === "dnds_plot")
-          return Inspector.into(".observablehq-dnds_plot")();
-        if (name === "documentation")
-          return Inspector.into(".observablehq-documentation")();
+        if (name === "viewof chart") {
+          return Inspector.into(".observablehq-chart")();
+        }
+
+        if (name === "viewof mapDate") {
+          return Inspector.into(".observablehq-viewof-mapDate")();
+        }
+
+        if (name === "geospatialLegend") {
+          return Inspector.into(".observablehq-geospatialLegend")();
+        }
+
+        if (name === "animatedChart") {
+          return Inspector.into(".observablehq-animatedChart")();
+        }
+
+        if (name === "figure2Desc") {
+          return Inspector.into(".observablehq-figure2Desc")();
+        }
+
+
+        if (name === "viewof doCumulativeCounts") {
+          return Inspector.into(".observablehq-viewof-doCumulativeCounts")();
+        }
+
+        if (name === "figure3Desc") {
+          return Inspector.into(".observablehq-figure3Desc")();
+        }
+
+        if (name === "genomicDist") {
+          return Inspector.into(".observablehq-genomicDist")();
+        }
+
+        if (name === "figure4Desc") {
+          return Inspector.into(".observablehq-figure4Desc")();
+        }
+
+        if (name === "trendLegend") {
+          return Inspector.into(".observablehq-trendLegend")();
+        }
+        
+        if (name === "trends") {
+          return Inspector.into(".observablehq-trends")();
+        }
 
       });
 
       window.mainModule = mainModule;
-
-    </script>
-
-    <script type="module">
-
-      import {
-        Runtime,
-        Inspector
-      } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-
-      import define from "https://api.observablehq.com/@stevenweaver/case-vs-sequence-count.js?v=3";
-
-      const summaryModule = new Runtime().module(define, name => {
-
-        if (name === "intro")
-          return Inspector.into("#observablehq-6c794e13 .observablehq-intro")();
-        if (name === "subView")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-subView"
-          )();
-        if (name === "subViewDesc")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-subViewDesc"
-          )();
-        if (name === "totalSeq")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-totalSeq"
-          )();
-        if (name === "totalSeqDesc")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-totalSeqDesc"
-          )();
-        if (name === "subDateCountry")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-subDateCountry"
-          )();
-        if (name === "subDateCountryDesc")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-subDateCountryDesc"
-          )();
-        if (name === "caseCountvsSeqCount")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-caseCountvsSeqCount"
-          )();
-        if (name === "caseCountvsSeqCountDesc")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-caseCountvsSeqCountDesc"
-          )();
-        if (name === "caseCountvsSeqCountC")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-caseCountvsSeqCountC"
-          )();
-        if (name === "caseCountvsSeqCountCDesc")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-caseCountvsSeqCountCDesc"
-          )();
-        if (name === "collectDate")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-collectDate"
-          )();
-        if (name === "collectDateDesc")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-collectDateDesc"
-          )();
-        if (name === "collectDateSub")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-collectDateSub"
-          )();
-        if (name === "collectDateSubDesc")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-collectDateSubDesc"
-          )();
-        if (name === "collectDateSubMean")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-collectDateSubMean"
-          )();
-        if (name === "collectDateSubMeanDesc")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-collectDateSubMeanDesc"
-          )();
-        if (name === "tableHeader")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-tableHeader"
-          )();
-        if (name === "countryTable")
-          return Inspector.into(
-            "#observablehq-6c794e13 .observablehq-countryTable"
-          )();
-
-      });
-
 
     </script>
 
