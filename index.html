@@ -30,9 +30,9 @@
 
   <body>
     <!--Container -->
-    <div class="mx-auto bg-grey-400">
+    <div class="mx-auto bg-grey-400 overflow-x-scroll">
       <!--Screen-->
-      <div class="min-h-screen flex flex-col">
+      <div class="min-h-screen flex flex-col overflow-x-scroll">
         <!--Header Section Starts Here-->
         <header class="bg-nav navbar h-16">
           <div class="flex justify-between">
@@ -41,7 +41,7 @@
                 class="fas fa-bars fa-2 p-2 text-white"
                 onclick="sidebarToggle()"
               ></i>
-              <h2 class="text-white ml-2 p-1" style="font-family: futura;">
+              <h2 class="text-white text-xs md:text-base ml-2 p-1" style="font-family: futura;">
                 SARS-CoV-2 Phylogeny and Spatiotemporal Spread
               </h2>
             </div>
@@ -83,8 +83,16 @@
           <!--/Sidebar-->
           <!--Main-->
           <div
+            id="loading"
+            class="bg-white-300 flex-1 p-3 overflow-x-scroll panel loading-panel"
+          >
+            <div class="loading-anim"></div>
+          </div>
+
+          <div
             id="evolution-panel"
             class="bg-white-300 flex-1 p-3 overflow-hidden panel evolution-panel"
+            style="display:none"
           >
             <div class="observablehq-intro"></div>
             <div class="float-right">
@@ -113,6 +121,7 @@
 
               <li class="-mb-px mr-1">
                 <a
+                  id="geospatial"
                   class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold"
                   onclick="tabToggle()"
                   data-hash="geospatial"
@@ -145,6 +154,7 @@
             <div id="evolution" class="tab-view flex flex-col">
               <div class="observablehq-figure1View"></div>
               <div class="observablehq-chart"></div>
+              <div class="observablehq-figure1Desc"></div>
             </div>
 
             <div id="geospatial" class="tab-view flex flex-col" style="display:none">
@@ -180,6 +190,22 @@
     <div id="hidden-cells"></div>
 
     <script type="module">
+      import {
+        Runtime,
+        Inspector,
+        Library
+      } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+      import define from "https://api.observablehq.com/@stevenweaver/loading.js?v=3";
+
+      let runtime = new Runtime();
+
+      runtime.module(define, name => {
+        if (name === "svg") return Inspector.into(".loading-anim")();
+      });
+    </script>
+
+
+    <script type="module">
 
       import * as _ from "https://underscorejs.org/modules/index.js";
 
@@ -191,7 +217,7 @@
 
       import define from "https://api.observablehq.com/@stevenweaver/tracking-signature-mutations-in-sars-cov-2-relative-to-the-i.js?v=3";
 
-      let chartWidth = document.getElementById("evolution").offsetWidth * 0.9;
+      let chartWidth = document.getElementById("loading").offsetWidth * 0.9;
 
       const runtime = new Runtime(
         Object.assign(new Library(), { width: chartWidth })
@@ -208,11 +234,42 @@
         }
 
         if (name === "figure1View") {
-          return Inspector.into(".observablehq-figure1View")();
+
+          let inspect = Inspector.into(".observablehq-figure1View")();
+          return inspect;
+
+        }
+
+        if (name === "figure1Desc") {
+          return Inspector.into(".observablehq-figure1Desc")();
         }
 
         if (name === "viewof chart") {
-          return Inspector.into(".observablehq-chart")();
+
+          let inspect = Inspector.into(".observablehq-chart")();
+
+          inspect.fulfilled = _.wrap(inspect.fulfilled, function(func, value) {
+
+            // clicks to toggle to map view
+            var setClicks = function(d) {
+              d3.selectAll(".node-text").on("click", function(d) { 
+                tabToggleId("geospatial");
+              });
+
+              d3.selectAll("circle").on("click", function(d) { 
+                tabToggleId("geospatial");
+              });
+            }
+
+            _.delay(setClicks, 2000);
+
+            togglePanels("evolution-panel");
+            return func.bind(inspect)(value);
+
+          });
+
+          return inspect;
+
         }
 
         if (name === "viewof mapDate") {

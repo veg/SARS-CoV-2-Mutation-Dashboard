@@ -136,3 +136,31 @@ d3
       .get("viewof render_site")
       ._value.dispatchEvent(new CustomEvent("input"));
   });
+
+function tabToggleId(id) {
+
+  let target = document.getElementById(id);
+
+  // update classnames
+  document.querySelectorAll(".tab-list").forEach(tabs => {
+    tabs.querySelectorAll("li").forEach(elem => {
+      elem.className = "mr-1";
+      elem.querySelector("a").className =
+        "bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold";
+    });
+  });
+
+  target.className =
+    "bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold";
+  target.parentElement.className = "-mb-px mr-1";
+
+  // get all tabs and display none besides anchor
+  document.querySelectorAll(".tab-view").forEach(ctn => {
+    if (id == ctn.id) {
+      ctn.style.display = "block";
+    } else {
+      ctn.style.display = "none";
+    }
+  });
+}
+
