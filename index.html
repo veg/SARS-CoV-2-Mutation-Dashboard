@@ -252,11 +252,11 @@
 
             // clicks to toggle to map view
             var setClicks = function(d) {
-              d3.selectAll(".node-text").on("click", function(d) { 
+              d3.selectAll(".node-text").on("mouseup", function(d) { 
                 tabToggleId("geospatial");
               });
 
-              d3.selectAll("circle").on("click", function(d) { 
+              d3.selectAll("circle").on("mouseup", function(d) { 
                 tabToggleId("geospatial");
               });
             }
