@@ -73,6 +73,10 @@
 
               <div class="dashboard-options">
                 <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                  <h6 class="selected">Selected: </h6>
+                  <b class="observablehq-chart-selected"></b>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
                   <div class="observablehq-viewof-as"></div>
                 </li>
               </div>
@@ -243,6 +247,20 @@
         if (name === "figure1Desc") {
           return Inspector.into(".observablehq-figure1Desc")();
         }
+
+        if (name === "chart") {
+
+          let inspect = Inspector.into(".observablehq-chart-selected")();
+
+          inspect.fulfilled = _.wrap(inspect.fulfilled, function(func, value) {
+            let selected = value.replace(/['"]+/g, '') || "any";
+            return func.bind(inspect)(selected);
+          });
+
+          return inspect;
+
+        }
+
 
         if (name === "viewof chart") {
 
