@@ -170,4 +170,14 @@ details {
   margin-top: 25px;
 }
 
+textarea {
+  border: solid;
+  padding: 2px;
+  border-width: thin;
+}
 
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+}

@@ -154,6 +154,17 @@
                 >
               </li>
 
+              <li class="mr-1">
+                <a
+                  class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold"
+                  onclick="tabToggle()"
+                  data-hash="classify"
+                  href="#"
+                  >Classify your Sequence</a
+                >
+              </li>
+
+
 
             </ul>
 
@@ -182,6 +193,13 @@
               <div class="observablehq-trends"></div>
               <div class="observablehq-figure4Desc"></div>
             </div>
+
+            <div id="classify" class="tab-view flex flex-col" style="display:none">
+              <div class="observablehq-sig"></div>
+              <div class="observablehq-bestMatch"></div>
+              <div class="observablehq-qry"></div>
+            </div>
+
 
         </div>
       </div>
@@ -338,6 +356,48 @@
       window.mainModule = mainModule;
 
     </script>
+
+    <script type="module">
+
+      import * as _ from "https://underscorejs.org/modules/index.js";
+
+      import {
+        Runtime,
+        Inspector,
+        Library
+      } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+
+      import define from "https://api.observablehq.com/@spond/sars-cov-2-classify.js?v=3";
+
+      let chartWidth = document.getElementById("loading").offsetWidth * 0.9;
+
+      const runtime = new Runtime(
+        Object.assign(new Library(), { width: chartWidth })
+      );
+
+      const mainModule = runtime.module(define, name => {
+
+        if (name === "sig") {
+          return Inspector.into(".observablehq-sig")();
+        }
+
+        if (name === "bestMatch") {
+          return Inspector.into(".observablehq-bestMatch")();
+        }
+
+        if (name === "viewof qry") {
+          let inspect = Inspector.into(".observablehq-qry")();
+          return inspect;
+
+        }
+
+
+      });
+
+      window.mainModule = mainModule;
+
+    </script>
+
 
     <script src="//d3js.org/d3.v5.js"></script>
     <script src="./main.js"></script>
