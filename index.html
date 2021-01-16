@@ -125,7 +125,7 @@
 
               <li class="-mb-px mr-1">
                 <a
-                  id="geospatial"
+                  id="geospatial-tab"
                   class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold"
                   onclick="tabToggle()"
                   data-hash="geospatial"
@@ -136,6 +136,7 @@
 
               <li class="mr-1">
                 <a
+                  id="temporal-tab"
                   class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
                   onclick="tabToggle()"
                   data-hash="temporal"
@@ -146,6 +147,7 @@
 
               <li class="mr-1">
                 <a
+                  id="snp-distribution-tab"
                   class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold"
                   onclick="tabToggle()"
                   data-hash="snp-distribution"
@@ -156,6 +158,7 @@
 
               <li class="mr-1">
                 <a
+                  id="classify-tab"
                   class="bg-white inline-block border-l border-t border-r -t py-2 px-4 text-blue-700 font-semibold"
                   onclick="tabToggle()"
                   data-hash="classify"
@@ -239,6 +242,7 @@
         Library
       } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
 
+      //import define from "https://api.observablehq.com/@stevenweaver/tracking-signature-mutations-in-sars-cov-2-relative-to-the-i/3.js?v=3";
       import define from "https://api.observablehq.com/@spond/distribution-of-sars-cov-2-sequences-that-have-a-particular.js?v=3";
 
       let chartWidth = document.getElementById("loading").offsetWidth * 0.9;
@@ -302,6 +306,12 @@
             _.delay(setClicks, 2000);
 
             togglePanels("evolution-panel");
+
+            if(window.location.href.includes("classify")) {
+              togglePanels("evolution-panel");
+              tabToggleId("classify-tab");
+            }
+
             return func.bind(inspect)(value);
 
           });
@@ -382,11 +392,27 @@
         }
 
         if (name === "bestMatch") {
+          // Remove URL
+          debugger;
           return Inspector.into(".observablehq-bestMatch")();
         }
 
         if (name === "viewof qry") {
+
           let inspect = Inspector.into(".observablehq-qry")();
+
+          inspect.fulfilled = _.wrap(inspect.fulfilled, function(func, value) {
+
+            //// Check url to see if classify is in it
+            //if(window.location.href.includes("classify")) {
+            //  togglePanels("evolution-panel");
+            //  tabToggleId("classify-tab");
+            //}
+
+            return func.bind(inspect)(value);
+
+          });
+
           return inspect;
 
         }

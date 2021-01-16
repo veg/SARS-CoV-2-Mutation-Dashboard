@@ -140,6 +140,7 @@ d3
 function tabToggleId(id) {
 
   let target = document.getElementById(id);
+  console.log(target);
 
   // update classnames
   document.querySelectorAll(".tab-list").forEach(tabs => {
@@ -156,7 +157,7 @@ function tabToggleId(id) {
 
   // get all tabs and display none besides anchor
   document.querySelectorAll(".tab-view").forEach(ctn => {
-    if (id == ctn.id) {
+    if (id == ctn.id + "-tab") {
       ctn.style.display = "block";
     } else {
       ctn.style.display = "none";
